@@ -3,7 +3,7 @@
 }
 
 .door {
-    padding: 0%;
-    margin: 50px;
-    border: none;
+    margin: 50px; 
+    width: 10%;
+    height: auto;
 }

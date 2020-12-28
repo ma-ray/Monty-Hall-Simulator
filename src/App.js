@@ -1,22 +1,20 @@
 import React from 'react';
+import Button from 'react-bootstrap/Button';
+import Image from 'react-bootstrap/Image';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import doorimage from './assets/door.png';
+import doorimage from './assets/door.jpg';
 import prizeimage from './assets/prize.png';
 import poopimage from './assets/poop.png';
 
 function Door(props) {
     return (
-        <button className="door" onClick={props.onClick}>
-            <img src={props.imgSrc} alt={props.altText}/>
-        </button>
-    )
-}
-
-function Reset(props) {
-    return (
-        <button className="reset" onClick={props.onClick}>
-            {"Start/Reset the simulation"}
-        </button>
+        <Image 
+        className="door" 
+        onClick={props.onClick} 
+        src={props.imgSrc}
+        alt={props.altText}
+        />
     )
 }
 
@@ -66,7 +64,10 @@ class App extends React.Component {
         </div>
 
         <div className="resetGame">
-            {this.renderReset()}
+            <Button  
+            onClick={() => this.generateGame()}>
+            Start/Reset the simulation
+            </Button>
         </div>
         </div>
     )
@@ -102,14 +103,6 @@ class App extends React.Component {
         opened: opened,
         status: status,
     })
-  }
-
-  renderReset() {
-      return (
-          <Reset
-              onClick={() => this.generateGame(this.state.doors)}
-          />
-      )
   }
 
   renderDoor(i) {
