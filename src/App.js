@@ -1,11 +1,13 @@
 import React from 'react';
 import './App.css';
-import doorimage from './door.png';
+import doorimage from './assets/door.png';
+import prizeimage from './assets/prize.png';
+import poopimage from './assets/poop.png';
 
 function Door(props) {
     return (
         <button className="door" onClick={props.onClick}>
-            {props.value}
+            <img src={props.imgSrc}></img>
         </button>
     )
 }
@@ -23,33 +25,32 @@ class App extends React.Component {
         super(props);
 
         this.state = {
-            doors: Array(3).fill(null),
+            doors: null,
             opened: Array(3).fill(false),
-            stage: 1,
+            stage: 0,
+            status: "Press the start button to begin.",
         }
-        this.generateGame(this.state.doors);
+        this.generateGame();
     }
 
     generateGame() {
-        const doors = this.state.doors.slice();
-
+        let doors = Array(3).fill(false);
         let prize = Math.floor(Math.random() * 3);
 
-        for (let i = 0; i < 3; i++) {
-            if (i === prize) doors[i] = "true";
-            else doors[i] = "false";
-        }
+        doors[prize] = true;
 
         this.setState({
             doors: doors,
-            opened: Array(3).fill("false"),
+            opened: Array(3).fill(false),
             stage: 1,
+            status: "Pick a door! Any door.",
         })
     }
 
   render() {
     let status;
-    status = this.state.isSecondStage ? 'Choose wisely.' : "Pick a door! Any door";
+    status = this.state.status;
+    console.log(status);
 
     return (
         <div className="App">
@@ -74,52 +75,34 @@ class App extends React.Component {
 
   handleClick(i) {
     let stage = this.state.stage;
-    let doors = this.state.doors.slice();
+    let doors = this.state.doors;
+    let opened = this.state.opened.slice();
+    let status = this.state.status;
 
     switch (stage) {
         case 1:
-            this.setState({
-                stage: 2,
-            });
-
             console.log("in stage 1");
             for (let j = 0; j < 3; j++) {
-                if (j !== i && this.state.doors[j] === "false") {
-                    // open the door with poop
-                    // update status "Choose carefully"
-
-                    doors[j] = doors[j].toUpperCase();
-
-                    this.setState({
-                        doors: doors,
-                    });
-
-                    console.log(doors[j]);
-                    return;
+                if (i !== j && !doors[j]) {
+                    opened[j]  = true;
+                    break;
                 }
             }
+            status = "Choose carefully. Switch or stay?";
             break;
         case 2:
-            console.log("in stage 2");
-            //open the valid user selected door
-            //declare the winner
-
-            doors[i] = doors[i].toUpperCase();
-            console.log(doors[i]);
-
-            this.setState({
-                doors: doors,
-            })
-
-            if (this.state.doors[i] === "true") {
-                alert("Winner");
-            } else {
-                alert("Loser");
-            }
-            return;
+            opened[i] = true;
+            status = doors[i] ? "Winner" : "Loser";
+            break;
         default:
-            alert("Unexpected error");
+            return;
     }
+
+    this.setState({
+        stage: this.state.stage + 1,
+        opened: opened,
+        status: status,
+    })
   }
 
   renderReset() {
@@ -131,12 +114,25 @@ class App extends React.Component {
   }
 
   renderDoor(i) {
-      return (
-          <Door value={this.state.doors[i]}
-                opened={this.state.opened[i]}
-                onClick={() => this.handleClick(i)}
-          />
-      )
+    let pic;
+
+    if (this.state.opened[i]) {
+        if (this.state.doors[i]) {
+            pic = prizeimage;
+        } else {
+            pic = poopimage;
+        }
+    } else {
+        pic = doorimage;
+    }
+
+    //pic = this.state.doors[i] ? prizeimage : poopimage;
+    
+    return (
+        <Door imgSrc={pic}
+            onClick={() => this.handleClick(i)}
+        />
+    )
   }
 }
 
