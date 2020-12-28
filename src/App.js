@@ -7,7 +7,7 @@ import poopimage from './assets/poop.png';
 function Door(props) {
     return (
         <button className="door" onClick={props.onClick}>
-            <img src={props.imgSrc}></img>
+            <img src={props.imgSrc} alt={props.altText}/>
         </button>
     )
 }
@@ -55,7 +55,6 @@ class App extends React.Component {
     return (
         <div className="App">
             <h1>Monty Hall Simulation</h1>
-
         <div className="doors">
             {this.renderDoor(0)}
             {this.renderDoor(1)}
@@ -115,22 +114,26 @@ class App extends React.Component {
 
   renderDoor(i) {
     let pic;
+    let alt;
 
     if (this.state.opened[i]) {
         if (this.state.doors[i]) {
             pic = prizeimage;
+            alt = "Prize";
         } else {
             pic = poopimage;
+            alt = "Poop";
         }
     } else {
         pic = doorimage;
+        alt = "Door"
     }
-
-    //pic = this.state.doors[i] ? prizeimage : poopimage;
     
     return (
-        <Door imgSrc={pic}
+        <Door 
+            imgSrc={pic}
             onClick={() => this.handleClick(i)}
+            altText = {alt}
         />
     )
   }
