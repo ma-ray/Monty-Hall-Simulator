@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/Monty-Hall-Simulator/static/css/main.552cc256.chunk.css",
+    "main.js": "/Monty-Hall-Simulator/static/js/main.07cce945.chunk.js",
+    "main.js.map": "/Monty-Hall-Simulator/static/js/main.07cce945.chunk.js.map",
+    "runtime-main.js": "/Monty-Hall-Simulator/static/js/runtime-main.f27b6064.js",
+    "runtime-main.js.map": "/Monty-Hall-Simulator/static/js/runtime-main.f27b6064.js.map",
+    "static/css/2.20aa2d7b.chunk.css": "/Monty-Hall-Simulator/static/css/2.20aa2d7b.chunk.css",
+    "static/js/2.d4a3c75a.chunk.js": "/Monty-Hall-Simulator/static/js/2.d4a3c75a.chunk.js",
+    "static/js/2.d4a3c75a.chunk.js.map": "/Monty-Hall-Simulator/static/js/2.d4a3c75a.chunk.js.map",
+    "static/js/3.e56948c9.chunk.js": "/Monty-Hall-Simulator/static/js/3.e56948c9.chunk.js",
+    "static/js/3.e56948c9.chunk.js.map": "/Monty-Hall-Simulator/static/js/3.e56948c9.chunk.js.map",
+    "index.html": "/Monty-Hall-Simulator/index.html",
+    "static/css/2.20aa2d7b.chunk.css.map": "/Monty-Hall-Simulator/static/css/2.20aa2d7b.chunk.css.map",
+    "static/css/main.552cc256.chunk.css.map": "/Monty-Hall-Simulator/static/css/main.552cc256.chunk.css.map",
+    "static/js/2.d4a3c75a.chunk.js.LICENSE.txt": "/Monty-Hall-Simulator/static/js/2.d4a3c75a.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f27b6064.js",
+    "static/css/2.20aa2d7b.chunk.css",
+    "static/js/2.d4a3c75a.chunk.js",
+    "static/css/main.552cc256.chunk.css",
+    "static/js/main.07cce945.chunk.js"
+  ]
+}
