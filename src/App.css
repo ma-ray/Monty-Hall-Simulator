@@ -2,11 +2,6 @@
   text-align: center;
 }
 
-/* .doors {
-    display: flex;
-    justify-content: space-evenly;
-} */
-
 .door {
     margin: 100px; 
     height: auto;

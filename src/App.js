@@ -8,7 +8,7 @@ function Door(props) {
         <Button 
         variant="link" 
         onClick={props.onClick} 
-        size="lg" style={{fontSize: 250}}
+        size="lg" style={{fontSize: 200, margin: 30}}
         >{props.value}</Button>
     )
 }
@@ -19,7 +19,7 @@ class App extends React.Component {
 
         this.state = {
             doors: null,
-            opened: Array(3).fill(false),
+            opened: Array(3).fill("🚪"),
             stage: 0,
             status: "Press the start button to begin.",
         }
@@ -27,14 +27,14 @@ class App extends React.Component {
     }
 
     generateGame() {
-        let doors = Array(3).fill(false);
+        let doors = Array(3).fill("💩");
         let prize = Math.floor(Math.random() * 3);
 
-        doors[prize] = true;
+        doors[prize] = "💰";
 
         this.setState({
             doors: doors,
-            opened: Array(3).fill(false),
+            opened: Array(3).fill("🚪"),
             stage: 1,
             status: "Pick a door! Any door.",
         })
@@ -46,23 +46,28 @@ class App extends React.Component {
 
     return (
         <div className="App">
-            <h1>Monty Hall Simulation</h1>
-        <div className="doors">
-            {this.renderDoor(0)}
-            {this.renderDoor(1)}
-            {this.renderDoor(2)}
-        </div>
+            <h1 style={{fontSize: 75}}>Monty Hall Simulator</h1>
+            <div className="doors">
+                {this.renderDoor(0)}
+                {this.renderDoor(1)}
+                {this.renderDoor(2)}
+            </div>
 
-        <div className="status">
-            <p style={{fontSize: 25}}>{status}</p>
-        </div>
+            <div className="status">
+                <p style={{fontSize: 25}}>{status}</p>
+            </div>
 
-        <div className="resetGame">
-            <Button  
-            onClick={() => this.generateGame()}>
-            Start/Reset the simulation
-            </Button>
-        </div>
+            <div className="resetGame">
+                <Button  
+                onClick={() => this.generateGame()}
+                style={{margin: 25}}>
+                Start/Reset the simulation
+                </Button>
+            </div>
+
+            <div>
+                <p>To learn more about the Monty Hall problem, <a href="https://en.wikipedia.org/wiki/Monty_Hall_problem">click here.</a></p>
+            </div>
         </div>
     )
   }
@@ -76,16 +81,16 @@ class App extends React.Component {
     switch (stage) {
         case 1:
             for (let j = 0; j < 3; j++) {
-                if (i !== j && !doors[j]) {
-                    opened[j]  = true;
+                if (i !== j && doors[j] !== "💰") {
+                    opened[j] = doors[j];
                     break;
                 }
             }
-            status = "Choose carefully. Switch or stay?";
+            status = "Choose carefully. Switch or stay? 🤔";
             break;
         case 2:
-            opened[i] = true;
-            status = doors[i] ? "🎉You Win🎉" : "You Lose 😔";
+            opened[i] = doors[i];
+            status = doors[i] === "💰" ? "🎉You Win🎉" : "You Lose 😔";
             break;
         default:
             return;
@@ -99,21 +104,9 @@ class App extends React.Component {
   }
 
   renderDoor(i) {
-    let pic;
-
-    if (this.state.opened[i]) {
-        if (this.state.doors[i]) {
-            pic = "💰";
-        } else {
-            pic = "💩";
-        }
-    } else {
-        pic = "🚪";
-    }
-
     return (
         <Door 
-        value={pic}
+        value={this.state.opened[i]}
         onClick={() => this.handleClick(i)}
         />
     )
