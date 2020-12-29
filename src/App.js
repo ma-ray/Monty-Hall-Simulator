@@ -1,20 +1,15 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
-import Image from 'react-bootstrap/Image';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import doorimage from './assets/door.jpg';
-import prizeimage from './assets/prize.png';
-import poopimage from './assets/poop.png';
 
 function Door(props) {
     return (
-        <Image 
-        className="door" 
+        <Button 
+        variant="link" 
         onClick={props.onClick} 
-        src={props.imgSrc}
-        alt={props.altText}
-        />
+        size="lg" style={{fontSize: 250}}
+        >{props.value}</Button>
     )
 }
 
@@ -48,7 +43,6 @@ class App extends React.Component {
   render() {
     let status;
     status = this.state.status;
-    console.log(status);
 
     return (
         <div className="App">
@@ -60,7 +54,7 @@ class App extends React.Component {
         </div>
 
         <div className="status">
-            <p>{status}</p>
+            <p style={{fontSize: 25}}>{status}</p>
         </div>
 
         <div className="resetGame">
@@ -81,7 +75,6 @@ class App extends React.Component {
 
     switch (stage) {
         case 1:
-            console.log("in stage 1");
             for (let j = 0; j < 3; j++) {
                 if (i !== j && !doors[j]) {
                     opened[j]  = true;
@@ -92,7 +85,7 @@ class App extends React.Component {
             break;
         case 2:
             opened[i] = true;
-            status = doors[i] ? "Winner" : "Loser";
+            status = doors[i] ? "🎉You Win🎉" : "You Lose 😔";
             break;
         default:
             return;
@@ -107,26 +100,21 @@ class App extends React.Component {
 
   renderDoor(i) {
     let pic;
-    let alt;
 
     if (this.state.opened[i]) {
         if (this.state.doors[i]) {
-            pic = prizeimage;
-            alt = "Prize";
+            pic = "💰";
         } else {
-            pic = poopimage;
-            alt = "Poop";
+            pic = "💩";
         }
     } else {
-        pic = doorimage;
-        alt = "Door"
+        pic = "🚪";
     }
-    
+
     return (
         <Door 
-            imgSrc={pic}
-            onClick={() => this.handleClick(i)}
-            altText = {alt}
+        value={pic}
+        onClick={() => this.handleClick(i)}
         />
     )
   }
