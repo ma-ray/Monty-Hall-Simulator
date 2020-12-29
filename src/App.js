@@ -6,7 +6,7 @@ import './App.css';
 function Door(props) {
     return (
         <Button 
-        variant="link" 
+        variant="light" 
         onClick={props.onClick} 
         size="lg" style={{fontSize: 200, margin: 30}}
         >{props.value}</Button>
