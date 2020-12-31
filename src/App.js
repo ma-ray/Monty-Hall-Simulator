@@ -8,7 +8,7 @@ function Door(props) {
         <Button 
         variant="light" 
         onClick={props.onClick} 
-        size="lg" style={{fontSize: 200}}
+        size="lg" style={{fontSize: 200, margin: 30}}
         >{props.value}</Button>
     )
 }
@@ -64,7 +64,7 @@ class App extends React.Component {
                 <Button  
                 onClick={() => this.generateGame()}
                 style={{margin: 25}}>
-                Start/Reset the simulation
+                Reset the simulation
                 </Button>
             </div>
 
