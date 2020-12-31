@@ -1,9 +1,14 @@
 .App {
-  text-align: center;
+    margin-top: 5%;
+    text-align: center;
 }
 
 .door {
     margin: 100px; 
     height: auto;
     font-size: 50px;
+}
+
+.doors button {
+    width: 300px;
 }

@@ -8,7 +8,7 @@ function Door(props) {
         <Button 
         variant="light" 
         onClick={props.onClick} 
-        size="lg" style={{fontSize: 200, margin: 30}}
+        size="lg" style={{fontSize: 200}}
         >{props.value}</Button>
     )
 }
@@ -23,6 +23,9 @@ class App extends React.Component {
             stage: 0,
             status: "Press the start button to begin.",
         }
+    }
+
+    componentDidMount() {
         this.generateGame();
     }
 
